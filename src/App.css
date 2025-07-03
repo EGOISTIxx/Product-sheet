@@ -1,0 +1,19 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.cards-greed {
+  display: flex;
+  gap: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+  .cards-greed {
+    flex-direction: column;
+    gap: 5px
+  }
+}
