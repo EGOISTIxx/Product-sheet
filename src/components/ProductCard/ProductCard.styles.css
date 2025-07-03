@@ -1,4 +1,4 @@
-/* Стили для компонента */
+/* ProductCard.css */
 .product-card {
   border: 1px solid #e0e0e0;
   border-radius: 12px;
@@ -6,58 +6,76 @@
   background: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 100%;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  
+  /* Фиксируем размеры */
+  width: 250px; 
+  height: 350px;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-image-container {
-  aspect-ratio: 4/3;
+  height: 180px; /* Фиксированная высота контейнера */
   background-color: #f8f8f8;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0; /* Запрещаем уменьшение */
 }
 
 .product-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Гарантируем заполнение контейнера */
   transition: transform 0.5s ease;
 }
 
-.product-image:hover {
-  transform: scale(1.03);
-}
-
 .image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #a0a0a0;
+  background-color: #f0f0f0;
   font-size: 14px;
 }
 
 .product-info {
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Занимаем всё доступное пространство */
+  overflow: hidden; /* Скрываем выходящий за пределы контент */
 }
 
 .product-title {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0 0 8px 0;
   color: #333;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Ограничиваем 2 строками */
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  height: 44px; /* Фиксированная высота под 2 строки */
 }
 
 .product-origin {
   color: #666;
   margin: 0 0 12px 0;
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .product-price {
-  font-size: 20px;
-  margin: 0;
+  font-size: 18px;
+  margin: auto 0 0 0; /* Прижимаем к низу */
   color: #2c3e50;
   font-weight: 700;
 }
@@ -65,14 +83,18 @@
 /* Адаптивность */
 @media (max-width: 500px) {
   .product-card {
-    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    min-height: 350px;
+  }
+  
+  .product-image-container {
+    height: 200px;
   }
   
   .product-title {
-    font-size: 16px;
-  }
-  
-  .product-price {
-    font-size: 18px;
+    height: auto;
+    -webkit-line-clamp: 3;
   }
 }
